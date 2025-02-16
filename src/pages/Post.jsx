@@ -43,9 +43,9 @@ export default function Post() {
                     />
                     <label htmlFor="visible" className='font-bold'>visible <span>({JSON.stringify(isVisible)})</span></label>
                     <div className='flex'>
-                        <button value="true" className='bg-black text-white px-2 cursor-pointer hover:bg-gray-500 hover:text-black' onClick={() => setIsVisible(true)}>true</button>
+                        <button value="true" className='bg-black text-white px-2 cursor-pointer hover:bg-gray-500 hover:text-black' onClick={(e) => { setIsVisible(true), e.preventDefault() }}>true</button>
 
-                        <button value="false" className='bg-black text-white px-2 cursor-pointer hover:bg-gray-500 hover:text-black' onClick={() => setIsVisible(false)}>false</button>
+                        <button value="false" className='bg-black text-white px-2 cursor-pointer hover:bg-gray-500 hover:text-black' onClick={(e) => { setIsVisible(false), e.preventDefault() }}>false</button>
                     </div>
                     <button
                         type='submit'
