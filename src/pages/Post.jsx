@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 export default function Post() {
     const [title, setTitle] = useState("test")
-    const [description, setDescription] = useState("tests")
+    const [description, setDescription] = useState("test")
     const [isVisible, setIsVisible] = useState(true)
 
     const handlePost = (e) => {
@@ -12,10 +12,11 @@ export default function Post() {
         const post = {
             title: title || "test",
             description: description || "test",
-            isVisible: isVisible || true
+            isVisible: isVisible
         }
         localStorage.setItem("posts", JSON.stringify([...posts, post]))
     }
+    console.log(isVisible)
     return (
         <div className='max-w-[1200px] mx-auto px-2 my-2'>
             <div className='border-2 px-2 border-gray-500 '>
@@ -41,20 +42,16 @@ export default function Post() {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                     <label htmlFor="visible" className='font-bold'>visible <span>({JSON.stringify(isVisible)})</span></label>
-                    <select name="visible" id="visible" className='my-2 border-2 border-gray-500'>
-                        <option value="true" onClick={() => setIsVisible(true)}>true</option>
-                        <option value="false" onClick={() => setIsVisible(false)}>false</option>
-                    </select>
+                    <div className='flex'>
+                        <button value="true" className='bg-black text-white px-2 cursor-pointer hover:bg-gray-500 hover:text-black' onClick={() => setIsVisible(true)}>true</button>
 
-                    <Link
+                        <button value="false" className='bg-black text-white px-2 cursor-pointer hover:bg-gray-500 hover:text-black' onClick={() => setIsVisible(false)}>false</button>
+                    </div>
+                    <button
+                        type='submit'
+                        onClick={(e) => handlePost(e)}
                         className='border-2 mb-4 mt-4 border-gray-500 rounded-sm px-4 py-2 hover:bg-black hover:text-white transition-all cursor-pointer '
-                        to="/home">
-                        <button
-                            type='submit'
-                            onClick={(e) => handlePost(e)}
-
-                        >post</button>
-                    </Link>
+                    >post</button>
                 </form>
 
             </div>
